@@ -21,36 +21,41 @@ public class MarathonServiceImpl implements MarathonService {
         this.dataService = dataService;
     }
 
+    //Kate
     public List<String> getStudents() {
         // TODO
         return null;
     }
 
+    //Kate
     public List<String> getMentors() {
         // TODO
         return null;
     }
 
+    //Kate
     public StudentScore studentResult(String studentName) {
         // TODO
         return null;
     }
 
+    //Ksu
     public List<StudentScore> allStudentsResult() {
         // TODO
         return null;
     }
-
+//Ksu
     public AverageScore studentAverage(String studentName) {
         // TODO
         return null;
     }
 
+    //Kate
     public List<AverageScore> allStudentsAverage() {
         // TODO
         return null;
     }
-
+//Ksu
     public MentorStudent mentorStudents(String mentorName) {
         // TODO
         return null;

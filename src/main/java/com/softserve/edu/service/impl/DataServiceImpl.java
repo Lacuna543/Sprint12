@@ -14,27 +14,32 @@ public class DataServiceImpl implements DataService {
     private List<Communication> communication;
     private List<Solution> solution;
 
+    //Ksu
     public void addStudent(String studentName) {
         // TODO for students
     }
 
+    //Ksu
     public void addMentor(String mentorName) {
         // TODO for mentors
     }
 
+    //Kate
     public void addSprint(String sprintName) {
         // TODO for sprints
     }
 
+    //Ksu
     public void addCommunication(String studentName, String mentorName) {
         // TODO for communication
     }
 
+    //Kate
     public void addSolution(String studentName, String sprintName, int score) {
         // TODO for solution
     }
     
-    // getters
+    // getters Ksu
     
     // TODO
 }
