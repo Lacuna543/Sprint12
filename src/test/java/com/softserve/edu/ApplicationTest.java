@@ -25,6 +25,7 @@ public class ApplicationTest {
 
     private DataService dataService;
 
+
     @Autowired
     public ApplicationTest(MarathonService marathonService, DataService dataService) {
         this.marathonService = marathonService;
@@ -54,12 +55,14 @@ public class ApplicationTest {
         dataService.addSolution("Vasya", "Sprint02", 8);
     }
 
+
+    /*Marathon Service Tests*/
+    /*Getters*/
     @Test
     public void checkGetMentors() {
         List<String> expected = new ArrayList<>();
         expected.add("Yaroslav");
         expected.add("Olga");
-
 
         List<String> actual = marathonService.getMentors();
         Assertions.assertEquals(expected, actual, "checkGetMentors()");
@@ -76,6 +79,7 @@ public class ApplicationTest {
         Assertions.assertEquals(expected, actual, "checkGetStudents()");
     }
 
+    /*Aggregations*/
     @Test
     public void checkAllStudentsAverage() {
         List<AverageScore> expected = new ArrayList<>();
@@ -104,7 +108,6 @@ public class ApplicationTest {
         Assertions.assertEquals(expected, actual, "checkMentorStudents()");
 
     }
-
 
     @Test
     public void checkStudentResult() {

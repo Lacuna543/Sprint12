@@ -42,7 +42,7 @@ public class MarathonServiceImpl implements MarathonService {
 
     //Kate
     public List<String> getMentors() {
-        return dataService.getMentors().stream().map(Entity::getName).collect(Collectors.toList());
+        return dataService.getMentors().stream().map(Entity::getName).distinct().collect(Collectors.toList());
     }
 
     //Kate
@@ -53,7 +53,7 @@ public class MarathonServiceImpl implements MarathonService {
                 .map(Entity::getId)
                 .orElse(0);
         Map<Integer, Integer> sprintsResults = dataService.getSolution().stream()
-                .filter(solution -> solution.getIdStudent() == studentId)
+                .filter(solution -> solution.getIdStudent() == studentId).distinct()
                 .collect(Collectors.toMap(Solution::getIdSprint, Solution::getScore));
 
         List<SprintScore> sprintScores = new ArrayList<>();
