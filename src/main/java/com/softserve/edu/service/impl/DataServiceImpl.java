@@ -42,19 +42,14 @@ public class DataServiceImpl implements DataService {
         sprints.add(new Entity(sprintName));
     }
 
+    /*students.stream()
+                    .filter(s -> s.getName().equals(studentName))
+                    .findFirst()
+                    .get()*/
     public void addCommunication(String studentName, String mentorName) {
-        if (communication == null)
-            communication = new ArrayList<>();
-        communication.add(new Communication(students.stream()
-                .filter(s -> s.getName().equals(studentName))
-                .findFirst()
-                .get()
-                .getId(),
-                mentors.stream()
-                        .filter(s -> s.getName().equals(mentorName))
-                        .findFirst()
-                        .get()
-                        .getId()));
+        if (communication == null) communication = new ArrayList<>();
+            communication.add(new Communication(getEntityByName(students, studentName).getId(),
+                getEntityByName(mentors, mentorName).getId()));
     }
 
     public void addSolution(String studentName, String sprintName, int score) {
@@ -86,9 +81,9 @@ public class DataServiceImpl implements DataService {
 
     public Entity getEntityByName(List<Entity> entities, String entityName) {
         /*Getting correct Entity from given list by its name (lists students, mentors, sprints)
-        * Methods where it should be used:
-        *   addCommunication
-        *   addSolution*/
+         * Methods where it should be used:
+         *   addCommunication
+         *   addSolution*/
         return entities.stream()
                 .filter(s -> s.getName().equals(entityName))
                 .findFirst()
