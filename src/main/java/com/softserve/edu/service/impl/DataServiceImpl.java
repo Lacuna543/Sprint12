@@ -45,7 +45,8 @@ public class DataServiceImpl implements DataService {
     public void addCommunication(String studentName, String mentorName) {
         if (communication == null)
             communication = new ArrayList<>();
-        communication.add(new Communication(students.stream()
+        communication.add(new Communication(
+                students.stream()
                 .filter(s -> s.getName().equals(studentName))
                 .findFirst()
                 .get()

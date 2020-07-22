@@ -9,7 +9,6 @@ import java.util.Objects;
 public class SprintScore { //Ksu
     private String sprintName;
     private int score;
-    // TODO
 
 
     public SprintScore(String sprintName, int score) {
