@@ -14,7 +14,7 @@ public class MarathonController {
 
     private MarathonService marathonService;
 
-    @Value("${welcome.message}")
+    @Value("Hello world!")
     private String message;
 
     @Autowired
