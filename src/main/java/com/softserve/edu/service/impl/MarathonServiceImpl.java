@@ -8,10 +8,14 @@ package com.softserve.edu.service.impl;
 	Інші методи (додавання сигнетур до інтерфейсу MarathonService
 */
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.softserve.edu.dto.SprintScore;
 import com.softserve.edu.entity.Entity;
+import com.softserve.edu.entity.Solution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,8 +47,25 @@ public class MarathonServiceImpl implements MarathonService {
 
     //Kate
     public StudentScore studentResult(String studentName) {
-        // TODO
-        return null;
+        int studentId = dataService.getStudents().stream()
+                .filter(student -> student.getName().equals(studentName))
+                .findFirst()
+                .map(Entity::getId)
+                .orElse(0);
+        Map<Integer, Integer> sprintsResults = dataService.getSolution().stream()
+                .filter(solution -> solution.getIdStudent() == studentId)
+                .collect(Collectors.toMap(Solution::getIdSprint, Solution::getScore));
+
+        List<SprintScore> sprintScores = new ArrayList<>();
+        for (Integer sprintId : sprintsResults.keySet()) {
+            String sprintName = dataService.getSprints().stream()
+                    .filter(sprint -> sprint.getId() == sprintId)
+                    .findFirst()
+                    .map(Entity::getName).orElse(null);
+            sprintScores.add(new SprintScore(sprintName, sprintsResults.get(sprintId)));
+        }
+
+        return new StudentScore(studentName, sprintScores);
     }
 
     //Ksu
