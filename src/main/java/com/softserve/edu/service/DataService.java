@@ -28,6 +28,4 @@ public interface DataService {
 
     public List<Solution> getSolution();
 
-    public Entity getEntityByName(List<Entity> entities, String entityName);
-
 }
