@@ -38,7 +38,6 @@ public class ApplicationTest {
     private void fillDataService() {
         dataService.addStudent("Petya");
         dataService.addStudent("Vasya");
-        dataService.addStudent("Igor");
 
         dataService.addMentor("Yaroslav");
         dataService.addMentor("Olga");
@@ -81,7 +80,6 @@ public class ApplicationTest {
         List<String> expected = new ArrayList<>();
         expected.add("Petya");
         expected.add("Vasya");
-        expected.add("Igor");
 
         List<String> actual = marathonService.getStudents();
         Assertions.assertEquals(expected, actual, "checkGetStudents()");
@@ -91,8 +89,8 @@ public class ApplicationTest {
     @Test
     public void checkAllStudentsAverage() {
         List<AverageScore> expected = new ArrayList<>();
-        expected.add(new AverageScore("Vasya", 9));
         expected.add(new AverageScore("Petya", 3));
+        expected.add(new AverageScore("Vasya", 9));
 
         List<AverageScore> actual = marathonService.allStudentsAverage();
         Assertions.assertEquals(expected, actual, "checkAllStudentsAverage()");
@@ -136,9 +134,8 @@ public class ApplicationTest {
                 ,
                 new StudentScore("Vasya",
                         List.of(new SprintScore("Sprint01", 10),
-                                new SprintScore("Sprint02", 8)))
-                ,
-                new StudentScore("Igor", new ArrayList<>()));
+                                new SprintScore("Sprint02", 8))));
+
         List<StudentScore> actual = marathonService.allStudentsResult();
         Assertions.assertEquals(expected, actual, "checkAllStudentsResult()");
     }
