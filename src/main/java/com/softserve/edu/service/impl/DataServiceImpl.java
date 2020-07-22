@@ -1,5 +1,6 @@
 package com.softserve.edu.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.softserve.edu.entity.Communication;
@@ -33,6 +34,8 @@ public class DataServiceImpl implements DataService {
 
     //Kate
     public void addSprint(String sprintName) {
+        if (sprints == null)
+            sprints = new ArrayList<>();
         sprints.add(new Entity(sprintName));
     }
 
@@ -54,6 +57,8 @@ public class DataServiceImpl implements DataService {
 
     //Kate
     public void addSolution(String studentName, String sprintName, int score) {
+        if (solution == null)
+            solution = new ArrayList<>();
         int studentId = getEntityByName(students, studentName).getId();
         int sprintId = getEntityByName(sprints, sprintName).getId();
         solution.add(new Solution(studentId, sprintId, score));
