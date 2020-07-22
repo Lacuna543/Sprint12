@@ -83,13 +83,17 @@ public class DataServiceImpl implements DataService {
     }
 
 
-    public Entity getEntityByName(List<Entity> entities, String entityName) {
-        /*Getting correct Entity from given list by its name (lists students, mentors, sprints)
-         * Methods where it should be used:
-         *   addCommunication
-         *   addSolution*/
+    public static Entity getEntityByName(List<Entity> entities, String entityName) {
+        /*Getting correct Entity from given list by its name (lists students, mentors, sprints)*/
         return entities.stream()
                 .filter(s -> s.getName().equals(entityName))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static Entity getEntityById(List<Entity> entities, int entityId) {
+        return entities.stream()
+                .filter(s -> s.getId() == entityId)
                 .findFirst()
                 .orElse(null);
     }

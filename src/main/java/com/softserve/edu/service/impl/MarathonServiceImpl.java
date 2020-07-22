@@ -47,24 +47,15 @@ public class MarathonServiceImpl implements MarathonService {
 
     //Kate
     public StudentScore studentResult(String studentName) {
-        int studentId = dataService.getStudents().stream()
-                .filter(student -> student.getName().equals(studentName))
-                .findFirst()
-                .map(Entity::getId)
-                .orElse(0);
-        Map<Integer, Integer> sprintsResults = dataService.getSolution().stream()
-                .filter(solution -> solution.getIdStudent() == studentId).distinct()
-                .collect(Collectors.toMap(Solution::getIdSprint, Solution::getScore));
+        int studentId = DataServiceImpl.getEntityByName(dataService.getStudents(), studentName).getId();
 
-        List<SprintScore> sprintScores = new ArrayList<>();
-
-        for (Integer sprintId : sprintsResults.keySet()) {
-            String sprintName = dataService.getSprints().stream()
-                    .filter(sprint -> sprint.getId() == sprintId)
-                    .findFirst()
-                    .map(Entity::getName).orElse(null);
-            sprintScores.add(new SprintScore(sprintName, sprintsResults.get(sprintId)));
-        }
+        List<SprintScore> sprintScores = dataService.getSolution().stream()
+                .filter(solution -> solution.getIdStudent() == studentId)
+                .map(solution ->
+                        new SprintScore(
+                                DataServiceImpl.getEntityById(dataService.getSprints(), solution.getIdSprint()).getName(),
+                                solution.getScore()))
+                .collect(Collectors.toList());
 
         return new StudentScore(studentName, sprintScores);
     }
