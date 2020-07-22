@@ -1,14 +1,5 @@
 package com.softserve.edu.service.impl;
 
-/*Методи, що треба реалізувати для DataServiceImpl:
-	додавання нового студента до списку по імені
-	додавання нового ментора до списку по імені
-	додавання нового спрінта до списку по імені
-	додавання комунікації по іменах ментора та студента (створити об'єкт Communication та додати до списку)
-	додавання рішення по іменах студента та спрінта + бал (створ. об'єкт Solution та додати до списку)
-	Інше за необхідності (треба буде до інтерфейсу DataService пододавати сигнатури методів).
-*/
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +7,7 @@ import com.softserve.edu.entity.Communication;
 import com.softserve.edu.entity.Entity;
 import com.softserve.edu.entity.Solution;
 import com.softserve.edu.service.DataService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component("DataService")
 public class DataServiceImpl implements DataService {
     private List<Entity> students;
     private List<Entity> mentors;
@@ -27,33 +15,50 @@ public class DataServiceImpl implements DataService {
     private List<Communication> communication;
     private List<Solution> solution;
 
-
-    public DataServiceImpl() {
-        students = new ArrayList<>();
-        mentors = new ArrayList<>();
-        sprints = new ArrayList<>();
-        communication = new ArrayList<>();
-        solution = new ArrayList<>();
-    }
-
-
+    //Ksu
     public void addStudent(String studentName) {
-        // TODO for students - Ksu
+        if (students == null)
+            students = new ArrayList<>();
+        students.add(new Entity(studentName));
+
+
     }
 
+    //Ksu
     public void addMentor(String mentorName) {
-        // TODO for mentors - Ksu
+        if (mentors == null)
+            mentors = new ArrayList<>();
+        mentors.add(new Entity(mentorName));
+
     }
 
+    //Kate
     public void addSprint(String sprintName) {
+        if (sprints == null)
+            sprints = new ArrayList<>();
         sprints.add(new Entity(sprintName));
     }
 
+    //Ksu
     public void addCommunication(String studentName, String mentorName) {
-        // TODO for communication - Ksu
+        if (communication == null)
+            communication = new ArrayList<>();
+        communication.add(new Communication(students.stream()
+                .filter(s -> s.getName().equals(studentName))
+                .findFirst()
+                .get()
+                .getId(),
+                mentors.stream()
+                        .filter(s -> s.getName().equals(mentorName))
+                        .findFirst()
+                        .get()
+                        .getId()));
     }
 
+    //Kate
     public void addSolution(String studentName, String sprintName, int score) {
+        if (solution == null)
+            solution = new ArrayList<>();
         int studentId = getEntityByName(students, studentName).getId();
         int sprintId = getEntityByName(sprints, sprintName).getId();
         solution.add(new Solution(studentId, sprintId, score));
@@ -72,4 +77,24 @@ public class DataServiceImpl implements DataService {
     }
 
     // TODO: getters by Ksu
+
+    public List<Entity> getStudents() {
+        return students;
+    }
+
+    public List<Entity> getMentors() {
+        return mentors;
+    }
+
+    public List<Entity> getSprints() {
+        return sprints;
+    }
+
+    public List<Communication> getCommunication() {
+        return communication;
+    }
+
+    public List<Solution> getSolution() {
+        return solution;
+    }
 }

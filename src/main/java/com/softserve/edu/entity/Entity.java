@@ -1,7 +1,6 @@
 package com.softserve.edu.entity;
 
 public class Entity {
-    private static int count = 0;
     private int id; // must be unique
     private String name;
 
