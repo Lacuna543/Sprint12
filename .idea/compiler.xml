@@ -7,14 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Sprint12" />
+        <module name="JOM-Sprint-12" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="JOM-Sprint-12" target="1.8" />
       <module name="Sprint12" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="JOM-Sprint-12" options="-parameters" />
       <module name="Sprint12" options="-parameters" />
     </option>
   </component>
