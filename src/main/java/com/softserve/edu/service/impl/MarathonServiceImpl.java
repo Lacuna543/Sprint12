@@ -9,7 +9,9 @@ package com.softserve.edu.service.impl;
 */
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.softserve.edu.entity.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,14 +33,12 @@ public class MarathonServiceImpl implements MarathonService {
 
     //Kate
     public List<String> getStudents() {
-        // TODO
-        return null;
+        return dataService.getStudents().stream().map(Entity::getName).collect(Collectors.toList());
     }
 
     //Kate
     public List<String> getMentors() {
-        // TODO
-        return null;
+        return dataService.getMentors().stream().map(Entity::getName).collect(Collectors.toList());
     }
 
     //Kate
