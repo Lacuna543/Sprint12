@@ -84,8 +84,9 @@ public class MarathonServiceImpl implements MarathonService {
 
     //Kate
     public List<AverageScore> allStudentsAverage() {
-        // TODO
-        return null;
+        return dataService.getStudents().stream()
+                .map(student -> studentAverage(student.getName()))
+                .collect(Collectors.toList());
     }
 
     //Ksu
