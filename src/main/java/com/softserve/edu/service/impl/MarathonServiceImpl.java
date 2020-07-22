@@ -57,6 +57,7 @@ public class MarathonServiceImpl implements MarathonService {
                 .collect(Collectors.toMap(Solution::getIdSprint, Solution::getScore));
 
         List<SprintScore> sprintScores = new ArrayList<>();
+
         for (Integer sprintId : sprintsResults.keySet()) {
             String sprintName = dataService.getSprints().stream()
                     .filter(sprint -> sprint.getId() == sprintId)
