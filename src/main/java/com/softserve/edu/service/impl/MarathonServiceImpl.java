@@ -28,7 +28,6 @@ import com.softserve.edu.service.MarathonService;
 
 @Service
 public class MarathonServiceImpl implements MarathonService {
-
     private DataService dataService;
 
     @Autowired
@@ -72,14 +71,28 @@ public class MarathonServiceImpl implements MarathonService {
 
     //Ksu
     public List<StudentScore> allStudentsResult() {
-        // TODO
-        return null;
+        List<StudentScore> listOfAllStudentsResult = new ArrayList<>();
+        for (String s : getStudents()) {
+            listOfAllStudentsResult.add(studentResult(s));
+        }
+
+        return listOfAllStudentsResult;
     }
 
     //Ksu
     public AverageScore studentAverage(String studentName) {
-        // TODO
-        return null;
+        List<Solution> listOfScoreStudents = new ArrayList<>();
+        listOfScoreStudents = dataService.getSolution()
+                .stream()
+                .filter(students -> students.getIdStudent() == dataService.getStudents()
+                        .stream().filter(studentsOne -> studentsOne.getName().equals(studentName)).findFirst().get().getId()).collect(Collectors.toList());
+        int sum = 0;
+        for (Solution score : listOfScoreStudents) {
+            sum += score.getScore();
+        }
+
+        AverageScore averageScore = new AverageScore(studentName, sum / listOfScoreStudents.size());
+        return averageScore;
     }
 
     //Kate
@@ -103,8 +116,6 @@ public class MarathonServiceImpl implements MarathonService {
                     .filter(s -> s.getId() == communication.getIdStudent())
                     .findFirst().get().getName());
         }
-
-
         return new MentorStudent(mentorName, listNameStudents);
     }
 }

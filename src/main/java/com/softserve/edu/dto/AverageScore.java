@@ -25,5 +25,4 @@ public class AverageScore { //Kate
         return Objects.hash(studentName, avgScore);
     }
 
-    // TODO
 }

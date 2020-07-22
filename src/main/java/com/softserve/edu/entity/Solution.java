@@ -24,10 +24,6 @@ public class Solution {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

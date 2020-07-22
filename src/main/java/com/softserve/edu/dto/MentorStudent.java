@@ -15,7 +15,6 @@ public class MentorStudent { //Ksu
         return mentorName;
     }
 
-
     public List<String> getStudentNames() {
         return studentNames;
     }

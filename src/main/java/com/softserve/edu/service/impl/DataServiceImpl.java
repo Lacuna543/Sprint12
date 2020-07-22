@@ -11,7 +11,6 @@ package com.softserve.edu.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.softserve.edu.entity.Communication;
 import com.softserve.edu.entity.Entity;
 import com.softserve.edu.entity.Solution;
@@ -44,10 +43,6 @@ public class DataServiceImpl implements DataService {
         sprints.add(new Entity(sprintName));
     }
 
-    /*students.stream()
-                    .filter(s -> s.getName().equals(studentName))
-                    .findFirst()
-                    .get()*/
     public void addCommunication(String studentName, String mentorName) {
         if (communication == null) communication = new ArrayList<>();
             communication.add(new Communication(getEntityByName(students, studentName).getId(),
