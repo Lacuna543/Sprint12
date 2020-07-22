@@ -1,5 +1,6 @@
 package com.softserve.edu.dto;
 import java.util.List;
+import java.util.Objects;
 
 public class MentorStudent { //Ksu
     private String mentorName;
@@ -19,4 +20,17 @@ public class MentorStudent { //Ksu
         return studentNames;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MentorStudent that = (MentorStudent) o;
+        return Objects.equals(getMentorName(), that.getMentorName()) &&
+                Objects.equals(getStudentNames(), that.getStudentNames());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMentorName(), getStudentNames());
+    }
 }
