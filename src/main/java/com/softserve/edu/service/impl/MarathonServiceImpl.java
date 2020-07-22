@@ -44,7 +44,8 @@ public class MarathonServiceImpl implements MarathonService {
         // TODO
         return null;
     }
-//Ksu
+
+    //Ksu
     public AverageScore studentAverage(String studentName) {
         // TODO
         return null;
@@ -55,7 +56,8 @@ public class MarathonServiceImpl implements MarathonService {
         // TODO
         return null;
     }
-//Ksu
+
+    //Ksu
     public MentorStudent mentorStudents(String mentorName) {
         // TODO
         return null;
