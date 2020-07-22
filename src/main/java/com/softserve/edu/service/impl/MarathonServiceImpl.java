@@ -8,9 +8,11 @@ package com.softserve.edu.service.impl;
 	Інші методи (додавання сигнетур до інтерфейсу MarathonService
 */
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.softserve.edu.entity.Communication;
 import com.softserve.edu.entity.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +51,7 @@ public class MarathonServiceImpl implements MarathonService {
 
     //Ksu
     public List<StudentScore> allStudentsResult() {
-        // TODO
+
         return null;
     }
 
@@ -67,7 +69,20 @@ public class MarathonServiceImpl implements MarathonService {
 
     //Ksu
     public MentorStudent mentorStudents(String mentorName) {
-        // TODO
-        return null;
+        List<Communication> list = dataService.getCommunication().stream()
+                .filter(s -> s.getIdMentor() == dataService.getMentors()
+                        .stream()
+                        .filter(s1 -> s1.getName().equals(mentorName))
+                        .findFirst()
+                        .get().getId()).collect(Collectors.toList());
+        List<String> listNameStudents = new ArrayList<>();
+        for (Communication communication : list) {
+            listNameStudents.add(dataService.getStudents().stream()
+                    .filter(s -> s.getId() == communication.getIdStudent())
+                    .findFirst().get().getName());
+        }
+
+
+        return new MentorStudent(mentorName, listNameStudents);
     }
 }

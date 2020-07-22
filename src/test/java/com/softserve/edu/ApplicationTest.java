@@ -66,6 +66,7 @@ public class ApplicationTest {
     }
 
     @Test
+
     public void checkGetStudents() {
         List<String> expected = new ArrayList<>();
         expected.add("Petya");

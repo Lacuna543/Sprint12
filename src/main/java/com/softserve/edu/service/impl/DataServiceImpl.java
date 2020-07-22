@@ -55,8 +55,7 @@ public class DataServiceImpl implements DataService {
     }
 
     public void addSolution(String studentName, String sprintName, int score) {
-        if (solution == null)
-            solution = new ArrayList<>();
+        if (solution == null) solution = new ArrayList<>();
         int studentId = getEntityByName(students, studentName).getId();
         int sprintId = getEntityByName(sprints, sprintName).getId();
         solution.add(new Solution(studentId, sprintId, score));
