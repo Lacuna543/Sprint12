@@ -7,7 +7,9 @@ import com.softserve.edu.dto.AverageScore;
 import com.softserve.edu.dto.MentorStudent;
 import com.softserve.edu.dto.SprintScore;
 import com.softserve.edu.dto.StudentScore;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +32,9 @@ public class ApplicationTest {
     public ApplicationTest(MarathonService marathonService, DataService dataService) {
         this.marathonService = marathonService;
         this.dataService = dataService;
-        fillDataService();
     }
 
+    @BeforeEach
     private void fillDataService() {
         dataService.addStudent("Petya");
         dataService.addStudent("Vasya");
@@ -58,6 +60,11 @@ public class ApplicationTest {
 
     /*Marathon Service Tests*/
     /*Getters*/
+    @AfterEach
+    public void clearData() {
+        dataService.clear();
+    }
+
     @Test
     public void checkGetMentors() {
         List<String> expected = new ArrayList<>();

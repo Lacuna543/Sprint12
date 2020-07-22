@@ -11,6 +11,7 @@ package com.softserve.edu.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.softserve.edu.entity.Communication;
 import com.softserve.edu.entity.Entity;
 import com.softserve.edu.entity.Solution;
@@ -45,7 +46,7 @@ public class DataServiceImpl implements DataService {
 
     public void addCommunication(String studentName, String mentorName) {
         if (communication == null) communication = new ArrayList<>();
-            communication.add(new Communication(getEntityByName(students, studentName).getId(),
+        communication.add(new Communication(getEntityByName(students, studentName).getId(),
                 getEntityByName(mentors, mentorName).getId()));
     }
 
@@ -77,7 +78,7 @@ public class DataServiceImpl implements DataService {
     }
 
 
-    public static Entity getEntityByName(List<Entity> entities, String entityName) {
+    public  Entity getEntityByName(List<Entity> entities, String entityName) {
         /*Getting correct Entity from given list by its name (lists students, mentors, sprints)*/
         return entities.stream()
                 .filter(s -> s.getName().equals(entityName))
@@ -85,10 +86,18 @@ public class DataServiceImpl implements DataService {
                 .orElse(null);
     }
 
-    public static Entity getEntityById(List<Entity> entities, int entityId) {
+    public  Entity getEntityById(List<Entity> entities, int entityId) {
         return entities.stream()
                 .filter(s -> s.getId() == entityId)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public void clear() {
+        students.clear();
+        mentors.clear();
+        sprints.clear();
+        communication.clear();
+        solution.clear();
     }
 }

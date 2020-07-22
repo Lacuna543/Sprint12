@@ -28,6 +28,9 @@ public interface DataService {
 
     public List<Solution> getSolution();
 
-    public Entity getEntityByName(List<Entity> entities, String entityName);
+    public  Entity getEntityByName(List<Entity> entities, String entityName);
+    public  Entity getEntityById(List<Entity> entities, int entityId);
+
+    public void clear();
 
 }

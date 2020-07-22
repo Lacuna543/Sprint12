@@ -47,13 +47,13 @@ public class MarathonServiceImpl implements MarathonService {
 
     //Kate
     public StudentScore studentResult(String studentName) {
-        int studentId = DataServiceImpl.getEntityByName(dataService.getStudents(), studentName).getId();
+        int studentId = dataService.getEntityByName(dataService.getStudents(), studentName).getId();
 
         List<SprintScore> sprintScores = dataService.getSolution().stream()
                 .filter(solution -> solution.getIdStudent() == studentId)
                 .map(solution ->
                         new SprintScore(
-                                DataServiceImpl.getEntityById(dataService.getSprints(), solution.getIdSprint()).getName(),
+                                dataService.getEntityById(dataService.getSprints(), solution.getIdSprint()).getName(),
                                 solution.getScore()))
                 .collect(Collectors.toList());
 
