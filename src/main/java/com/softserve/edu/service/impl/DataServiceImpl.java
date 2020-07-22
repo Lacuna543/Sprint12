@@ -1,5 +1,14 @@
 package com.softserve.edu.service.impl;
 
+/*Методи, що треба реалізувати для DataServiceImpl:
+	додавання нового студента до списку по імені
+	додавання нового ментора до списку по імені
+	додавання нового спрінта до списку по імені
+	додавання комунікації по іменах ментора та студента (створити об'єкт Communication та додати до списку)
+	додавання рішення по іменах студента та спрінта + бал (створ. об'єкт Solution та додати до списку)
+	Інше за необхідності (треба буде до інтерфейсу DataService пододавати сигнатури методів).
+*/
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,28 +26,22 @@ public class DataServiceImpl implements DataService {
     private List<Communication> communication;
     private List<Solution> solution;
 
-    //Ksu
     public void addStudent(String studentName) {
         if (students == null)
             students = new ArrayList<>();
         students.add(new Entity(studentName));
-
-
     }
 
-    //Ksu
     public void addMentor(String mentorName) {
         if (mentors == null)
             mentors = new ArrayList<>();
         mentors.add(new Entity(mentorName));
-
     }
 
     public void addSprint(String sprintName) {
         sprints.add(new Entity(sprintName));
     }
 
-    //Ksu
     public void addCommunication(String studentName, String mentorName) {
         if (communication == null)
             communication = new ArrayList<>();
@@ -91,6 +94,4 @@ public class DataServiceImpl implements DataService {
                 .findFirst()
                 .orElse(null);
     }
-
-    // TODO: getters by Ksu
 }
