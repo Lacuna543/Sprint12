@@ -1,5 +1,10 @@
 package com.softserve.edu;
 
+/*Тести:
+	метод для заповнення DataService
+    по кілька тестів для кожного з методів*/
+
+
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;

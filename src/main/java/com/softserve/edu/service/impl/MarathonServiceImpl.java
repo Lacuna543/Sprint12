@@ -1,5 +1,13 @@
 package com.softserve.edu.service.impl;
 
+/*Основний сервіс:
+	Отримання списків всіх студентів, менторів
+	Отримання результату 1 студента або всіх студентів (клас StudentScore)
+	Середній результат для 1 студента або всіх студентів (AverageScore)
+	Студенти ментора
+	Інші методи (додавання сигнетур до інтерфейсу MarathonService
+*/
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
